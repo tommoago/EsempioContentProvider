@@ -21,7 +21,7 @@ public class ToDoProvider extends ContentProvider {
     public static final String MIME_TYPE_ORDERS = ContentResolver.CURSOR_DIR_BASE_TYPE + "vnd.all_todos";
     public static final String MIME_TYPE_ORDER = ContentResolver.CURSOR_ITEM_BASE_TYPE + "vnd.single_todo";
     public static final Uri TODOS_URI = Uri.parse(ContentResolver.SCHEME_CONTENT + "://" + AUTORITY
-            + BASE_PATH_TODOS);
+            + "/" + BASE_PATH_TODOS);
     private ToDoDB database;
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -123,7 +123,7 @@ public class ToDoProvider extends ContentProvider {
                 query = selection;
                 break;
         }
-        int updatedRows = db.update(table,values, query, selectionArgs);
+        int updatedRows = db.update(table, values, query, selectionArgs);
         getContext().getContentResolver().notifyChange(uri, null);
 
         return updatedRows;

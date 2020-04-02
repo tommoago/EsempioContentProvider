@@ -18,8 +18,7 @@
         </activity>
         <provider
             android:authorities="com.tommo.esempiocontentprovider.database.ContentProvider"
-            android:name=".database.ToDoProvider"
-            android:exported="false"/>
+            android:name=".database.ToDoProvider"/>
     </application>
 
 </manifest>

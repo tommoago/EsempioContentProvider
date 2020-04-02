@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.tommo.esempiocontentprovider.database.ContentProvider"
+            android:name=".database.ToDoProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

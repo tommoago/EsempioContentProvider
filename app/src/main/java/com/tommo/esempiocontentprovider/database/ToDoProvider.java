@@ -35,7 +35,6 @@ public class ToDoProvider extends ContentProvider {
             + "/" + BASE_PATH_USERS);
 
 
-
     private ToDoDB database;
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -67,6 +66,13 @@ public class ToDoProvider extends ContentProvider {
             case ALL_TODO:
                 builder.setTables(ToDoTableHelper.TABLE_NAME);
                 break;
+            case SINGLE_USER:
+                builder.setTables(UserTableHelper.TABLE_NAME);
+                builder.appendWhere(UserTableHelper._ID + " = " + uri.getLastPathSegment());
+                break;
+            case ALL_USER:
+                builder.setTables(UserTableHelper.TABLE_NAME);
+                break;
         }
         Cursor cursor = builder.query(db, projection, selection, selectionArgs, null, null, sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
@@ -80,9 +86,12 @@ public class ToDoProvider extends ContentProvider {
         switch (uriMatcher.match(uri)) {
             case SINGLE_TODO:
                 return MIME_TYPE_TODO;
-
             case ALL_TODO:
                 return MIME_TYPE_TODOS;
+            case SINGLE_USER:
+                return MIME_TYPE_USER;
+            case ALL_USER:
+                return MIME_TYPE_USERS;
         }
         return null;
     }
@@ -94,6 +103,12 @@ public class ToDoProvider extends ContentProvider {
             SQLiteDatabase db = database.getWritableDatabase();
             long result = db.insert(ToDoTableHelper.TABLE_NAME, null, values);
             String resultString = ContentResolver.SCHEME_CONTENT + "://" + BASE_PATH_TODOS + "/" + result;
+            getContext().getContentResolver().notifyChange(uri, null);
+            return Uri.parse(resultString);
+        } else if (uriMatcher.match(uri) == ALL_USER) {
+            SQLiteDatabase db = database.getWritableDatabase();
+            long result = db.insert(UserTableHelper.TABLE_NAME, null, values);
+            String resultString = ContentResolver.SCHEME_CONTENT + "://" + BASE_PATH_USERS + "/" + result;
             getContext().getContentResolver().notifyChange(uri, null);
             return Uri.parse(resultString);
         }
@@ -114,6 +129,17 @@ public class ToDoProvider extends ContentProvider {
                 break;
             case ALL_TODO:
                 table = ToDoTableHelper.TABLE_NAME;
+                query = selection;
+                break;
+            case SINGLE_USER:
+                table = UserTableHelper.TABLE_NAME;
+                query = UserTableHelper._ID + " = " + uri.getLastPathSegment();
+                if (selection != null) {
+                    query += " AND " + selection;
+                }
+                break;
+            case ALL_USER:
+                table = UserTableHelper.TABLE_NAME;
                 query = selection;
                 break;
         }
@@ -137,6 +163,17 @@ public class ToDoProvider extends ContentProvider {
                 break;
             case ALL_TODO:
                 table = ToDoTableHelper.TABLE_NAME;
+                query = selection;
+                break;
+            case SINGLE_USER:
+                table = UserTableHelper.TABLE_NAME;
+                query = UserTableHelper._ID + " = " + uri.getLastPathSegment();
+                if (selection != null) {
+                    query += " AND " + selection;
+                }
+                break;
+            case ALL_USER:
+                table = UserTableHelper.TABLE_NAME;
                 query = selection;
                 break;
         }

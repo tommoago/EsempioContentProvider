@@ -1,4 +1,4 @@
-package com.tommo.esempiocontentprovider;
+package com.tommo.esempiocontentprovider.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,17 +7,22 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.tommo.esempiocontentprovider.R;
 import com.tommo.esempiocontentprovider.adapters.ToDoAdapter;
 import com.tommo.esempiocontentprovider.database.ToDoProvider;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ToDoListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int MY_ID = 1;
     ListView list;
     ToDoAdapter adapter;
+    Button newToDo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         adapter = new ToDoAdapter(this, null);
         list.setAdapter(adapter);
         getSupportLoaderManager().initLoader(MY_ID, null, this);
+        newToDo = findViewById(R.id.buttonNewToDo);
+        newToDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ToDoListActivity.this, InsertActivity.class));
+            }
+        });
     }
 
     @NonNull

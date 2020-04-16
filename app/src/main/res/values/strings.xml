@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">EsempioContentProvider</string>
+    <string name="app_name">EsempioListSQL</string>
+    <string name="activities_list">Lista attività</string>
+    <string name="add_new_activity">Aggiungi nuova attività</string>
+    <string name="creation_date">Data creazione</string>
+    <string name="description">Descrizione</string>
+    <string name="description_hint">Scrivi una descrizione per questo todo...</string>
+    <string name="save">Salva</string>
+    <string name="database_error">Qualcosa è andato storto durante l\'apertura del database</string>
+    <string name="todo_already_done">Questa attività è già segnata come fatta!</string>
+    <string name="todo_update_success">Attività segnata come fatta!</string>
+    <string name="todo_update_error">Qualcosa è andato storto durante l\'aggiornamento dell\'attività</string>
+    <string name="invalid_description">Inserisci una descrizione valida</string>
+    <string name="todo_insert_success">Attività aggiunta con successo!</string>
+    <string name="todo_insert_error">Qualcosa è andato storto durante l\'aggiunta della nuova attività</string>
+    <string name="delete_todo_title">Cancella attività</string>
+    <string name="delete_todo_message">Sei sicuro di voler cancellare questa attività?</string>
+    <string name="todo_delete_success">Attività eliminata con successo!</string>
+    <string name="todo_delete_error">Qualcosa è andato storto durante l\'eliminazione dell\'attività</string>
 </resources>

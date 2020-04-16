@@ -35,6 +35,7 @@ public class ToDoProvider extends ContentProvider {
     public boolean onCreate() {
         database = new ToDoDB(getContext());
         return true;
+
     }
 
     @Nullable

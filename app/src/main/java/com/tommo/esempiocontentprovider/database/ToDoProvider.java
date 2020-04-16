@@ -15,19 +15,35 @@ import androidx.annotation.Nullable;
 public class ToDoProvider extends ContentProvider {
 
     public static final String AUTORITY = "com.tommo.esempiocontentprovider.database.ContentProvider";
+
     public static final String BASE_PATH_TODOS = "todos";
+    public static final String BASE_PATH_USERS = "users";
+
     public static final int ALL_TODO = 1;
     public static final int SINGLE_TODO = 0;
-    public static final String MIME_TYPE_ORDERS = ContentResolver.CURSOR_DIR_BASE_TYPE + "vnd.all_todos";
-    public static final String MIME_TYPE_ORDER = ContentResolver.CURSOR_ITEM_BASE_TYPE + "vnd.single_todo";
+    public static final int ALL_USER = 2;
+    public static final int SINGLE_USER = 3;
+
+    public static final String MIME_TYPE_TODOS = ContentResolver.CURSOR_DIR_BASE_TYPE + "vnd.all_todos";
+    public static final String MIME_TYPE_TODO = ContentResolver.CURSOR_ITEM_BASE_TYPE + "vnd.single_todo";
+    public static final String MIME_TYPE_USERS = ContentResolver.CURSOR_DIR_BASE_TYPE + "vnd.all_users";
+    public static final String MIME_TYPE_USER = ContentResolver.CURSOR_ITEM_BASE_TYPE + "vnd.single_user";
+
     public static final Uri TODOS_URI = Uri.parse(ContentResolver.SCHEME_CONTENT + "://" + AUTORITY
             + "/" + BASE_PATH_TODOS);
+    public static final Uri USERS_URI = Uri.parse(ContentResolver.SCHEME_CONTENT + "://" + AUTORITY
+            + "/" + BASE_PATH_USERS);
+
+
+
     private ToDoDB database;
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         uriMatcher.addURI(AUTORITY, BASE_PATH_TODOS, ALL_TODO);
         uriMatcher.addURI(AUTORITY, BASE_PATH_TODOS + "/#", SINGLE_TODO);
+        uriMatcher.addURI(AUTORITY, BASE_PATH_USERS, ALL_USER);
+        uriMatcher.addURI(AUTORITY, BASE_PATH_USERS + "/#", SINGLE_USER);
     }
 
 
@@ -63,10 +79,10 @@ public class ToDoProvider extends ContentProvider {
     public String getType(@NonNull Uri uri) {
         switch (uriMatcher.match(uri)) {
             case SINGLE_TODO:
-                return MIME_TYPE_ORDER;
+                return MIME_TYPE_TODO;
 
             case ALL_TODO:
-                return MIME_TYPE_ORDERS;
+                return MIME_TYPE_TODOS;
         }
         return null;
     }

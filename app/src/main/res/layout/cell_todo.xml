@@ -11,11 +11,25 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="Username"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/textViewDataIns"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewasa" />
+
+    <TextView
+        android:id="@+id/textViewasa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="Data inserimento"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/textViewDataIns"
         app:layout_constraintHorizontal_chainStyle="spread"/>
 
@@ -26,9 +40,19 @@
         android:text="TextView"
         android:layout_marginStart="8dp"
         app:layout_constraintEnd_toStartOf="@id/barrier"
+        app:layout_constraintStart_toEndOf="@id/textViewasa"
+        app:layout_constraintBaseline_toBaselineOf="@id/textViewasa"
+        tools:text="27/03/2020"/>
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toStartOf="@id/barrier"
         app:layout_constraintStart_toEndOf="@id/textView"
         app:layout_constraintBaseline_toBaselineOf="@id/textView"
-        tools:text="27/03/2020"/>
+        tools:text="Username"/>
 
     <TextView
         android:id="@+id/textView3"

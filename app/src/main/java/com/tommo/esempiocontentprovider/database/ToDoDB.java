@@ -20,6 +20,12 @@ public class ToDoDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ToDoTableHelper.CREATE);
         db.execSQL(UserTableHelper.CREATE);
+        ContentValues vValues = new ContentValues();
+        vValues.put(UserTableHelper._ID, 0);
+        vValues.put(UserTableHelper.NAME, "");
+        vValues.put(UserTableHelper.SURNAME, "NESSUN UTENTE");
+        vValues.put(UserTableHelper.USERNAME, "");
+        db.insert(UserTableHelper.TABLE_NAME, null, vValues);
 
 
 

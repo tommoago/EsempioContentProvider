@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.InsertActivity"></activity>
+        <activity android:name=".activities.InsertUserActivity" />
+        <activity android:name=".activities.UpdateUserActivity" />
+        <activity android:name=".activities.ListUsersActivity" />
+
         <provider
             android:authorities="com.tommo.esempiocontentprovider.database.ContentProvider"
             android:name=".database.ToDoProvider"/>

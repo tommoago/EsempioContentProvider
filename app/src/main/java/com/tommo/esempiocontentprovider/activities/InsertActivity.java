@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tommo.esempiocontentprovider.R;
+import com.tommo.esempiocontentprovider.adapters.UserAdapter;
 import com.tommo.esempiocontentprovider.database.ToDoProvider;
 import com.tommo.esempiocontentprovider.database.ToDoTableHelper;
 
@@ -69,12 +70,11 @@ public class InsertActivity extends AppCompatActivity {
     }
 
     private void popolateSpinnerUsers() {
-//        ToDoDB db = new ToDoDB(this);
-//        SQLiteDatabase toDoDatabase = db.getReadableDatabase();
-//        Cursor cursor=toDoDatabase.query(UserTableHelper.TABLE_NAME,null,null,null,null,null,null);
-//
-//        UserAdapter adapter=new UserAdapter(this,cursor);
-//        spinnerUsers.setAdapter(adapter);
+
+        Cursor cursor=getContentResolver().query(ToDoProvider.USERS_URI,null,null,null,null);
+
+        UserAdapter adapter=new UserAdapter(this,cursor);
+        spinnerUsers.setAdapter(adapter);
 
     }
 
@@ -83,8 +83,9 @@ public class InsertActivity extends AppCompatActivity {
         ContentValues values=new ContentValues();
         values.put(ToDoTableHelper.DATE, dateLabel.getText().toString());
         values.put(ToDoTableHelper.DESCRIPTION, descriptionInput.getText().toString());
-
+        values.put(ToDoTableHelper.ID_USER, id);
         getContentResolver().insert(ToDoProvider.TODOS_URI, values);
+        finish();
 
 
     }

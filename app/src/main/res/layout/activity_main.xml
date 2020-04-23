@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ToDoListActivity">
+    tools:context=".activities.MainActivity">
 
     <ListView
-        android:id="@+id/listToDo"
-        android:layout_width="match_parent"
+        android:id="@+id/listViewToDo"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNewToDo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonListUsers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonNewToDo"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonNew"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="inserisci attività"
+        android:text="@string/add_new_activity"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonListUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista utenti"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
